@@ -1,3 +1,6 @@
 Slot Machine automation test
 
-*Java*JUnit - Test Framework*
+*JUnit - Test Framework*
+
+*Java*
+

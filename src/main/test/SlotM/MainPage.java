@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import sun.applet.Main;
 
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class MainPage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
-
 
     @FindBy(how = How.CLASS_NAME, using = "btnChangeBackground")
     private WebElement btnChangeBkgr;

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-public class AppTest extends Base {
+public class TestSuite extends Base {
 
     @Test
     public void Test1_Change_Backgrounds() throws InterruptedException {
@@ -44,7 +44,7 @@ public class AppTest extends Base {
 
 
     @Test
-    public void Test4_Check_if_Bet_Value_Is_Changed() throws InterruptedException {
+    public void Test4_Change_Bet_Value() throws InterruptedException {
         MainPage mainp = new MainPage(driver);
         for (int i = 1; i < 9; i++) {
             assertEquals("Bet value is not changed after spin up",mainp.actualBetValue(), i);
@@ -58,7 +58,7 @@ public class AppTest extends Base {
 
 
     @Test
-    public void Test5_Check_if_Payout_is_Increased() {
+    public void Test5_Change_Payout_Value() {
         MainPage mainp = new MainPage(driver);
         for (int i = 2; i < 9; i++) {
             mainp.clickBetSpinUp();
@@ -71,7 +71,7 @@ public class AppTest extends Base {
     }
 
     @Test
-    public void Test6_Check_Last_Won_value() throws InterruptedException {
+    public void Test6_Won_Game() throws InterruptedException {
         MainPage mainp = new MainPage(driver);
         boolean win = false;
         int tries = 10;
@@ -89,7 +89,7 @@ public class AppTest extends Base {
 
 
     @Test
-    public void Test7_Check_Credit_value_if_Win() throws InterruptedException {
+    public void Test7_Credit_Value_if_Win() throws InterruptedException {
         MainPage mainp = new MainPage(driver);
         boolean win = false;
         int tries = 10;
@@ -113,7 +113,7 @@ public class AppTest extends Base {
 
 
     @Test
-    public void Test8_Check_Credit_value_if_Lost() throws InterruptedException {
+    public void Test8_Credit_Value_if_Lost() throws InterruptedException {
         MainPage mainp = new MainPage(driver);
         boolean lost = false;
         int tries = 5;
