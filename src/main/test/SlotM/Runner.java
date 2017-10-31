@@ -9,6 +9,5 @@ import org.junit.runners.Suite;
         TestSuite.class
 })
 
-
 public class Runner {
 }

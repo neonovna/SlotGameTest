@@ -10,7 +10,6 @@ public class Base {
 
     protected static WebDriver driver = null;
 
-
     @Before
     public void setUp() throws Exception {
         System.out.print("\nBrowser open");
@@ -18,7 +17,6 @@ public class Base {
         driver.manage().window().maximize();
         driver.navigate().to("http://slotmachinescript.com/");
         Assert.assertEquals("Incorrect title", "Add a HTML5 Slot Machine to your Site", driver.getTitle());
-
     }
 
     @After

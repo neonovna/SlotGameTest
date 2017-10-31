@@ -13,7 +13,6 @@ public class MainPage {
 
     public WebDriver driver;
 
-
     public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -84,7 +83,6 @@ public class MainPage {
         return Float.parseFloat(element.getAttribute("data-basePayout"));
     }
 
-
     public void clickOnChangeBkgr() throws InterruptedException {
         btnChangeBkgr.click();
         Thread.sleep(3000);
@@ -100,6 +98,11 @@ public class MainPage {
         Thread.sleep(3000);
     }
 
+    public void clickSpinBtn() throws InterruptedException {
+        btnSpin.click();
+        Thread.sleep(5000);
+    }
+
     public void clickBetSpinUp() {
         btnBetSpinUp.click();
     }
@@ -110,34 +113,22 @@ public class MainPage {
 
     public int actualBetValue() {
         return Integer.parseInt(betBox.getText());
-
     }
-
-    public void clickSpinBtn() throws InterruptedException {
-        btnSpin.click();
-        Thread.sleep(5000);
-    }
-
 
     public List<WebElement> listOfElements() {
-        List<WebElement> allElements = driver.findElements(By.xpath("//span[@class='tdPayout']"));
-        return allElements;
+        return driver.findElements(By.xpath("//span[@class='tdPayout']"));
     }
 
     public WebElement backgroundElement(int i) {
-
-        WebElement elem = driver.findElement(By.xpath("//div[@id='changeable_background_" + i + "']"));
-        return elem;
+        return driver.findElement(By.xpath("//div[@id='changeable_background_" + i + "']"));
     }
 
     public WebElement iconElement(int i) {
-        WebElement elem = driver.findElement(By.xpath("//div[contains(@class, 'reelSet" + i + "')]"));
-        return elem;
+        return driver.findElement(By.xpath("//div[contains(@class, 'reelSet" + i + "')]"));
     }
 
     public WebElement machineElement(int i) {
-        WebElement elem = driver.findElement(By.xpath("//div[contains(@class, 'slotMachine" + i + "')]"));
-        return elem;
+        return driver.findElement(By.xpath("//div[contains(@class, 'slotMachine" + i + "')]"));
     }
 
 }
