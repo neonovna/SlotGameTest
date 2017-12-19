@@ -1,17 +1,23 @@
 package SlotM;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+
 public class MainPage {
 
     public WebDriver driver;
+
+    public int maxBets = 9;
+    public int maxBackgrounds = 4;
+    public int maxIcons = 3;
+    public int maxMachines = 5;
+    public int maxTries = 10;
 
     public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -22,13 +28,13 @@ public class MainPage {
     private WebElement btnChangeBkgr;
 
     @FindBy(how = How.CLASS_NAME, using = "btnChangeReels")
-    private WebElement btnChangeIcons;
+    public WebElement btnChangeIcons;
 
     @FindBy(how = How.CLASS_NAME, using = "btnChangeMachine")
     private WebElement btnChangeMachine;
 
     @FindBy(how = How.ID, using = "spinButton")
-    private WebElement btnSpin;
+    public WebElement btnSpin;
 
     @FindBy(how = How.ID, using = "lastWin")
     private WebElement lastWinBox;
@@ -63,6 +69,9 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = "//div[@class='trPrize won']/descendant::span[@class='tdPayout']")
     public WebElement wonValue;
 
+    @FindBy(how = How.XPATH, using = "//div[@class='disabled']")
+    public WebElement btnDisabledSpin;
+
     public float getWonValue() {
         return Float.parseFloat(wonValue.getText());
     }
@@ -83,24 +92,29 @@ public class MainPage {
         return Float.parseFloat(element.getAttribute("data-basePayout"));
     }
 
+    private void scrollToElement(WebElement el) {
+        if (driver instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].scrollIntoView(true);", el);
+        }
+    }
+
     public void clickOnChangeBkgr() throws InterruptedException {
         btnChangeBkgr.click();
-        Thread.sleep(3000);
     }
 
     public void clickOnChangeIcon() throws InterruptedException {
+        scrollToElement(btnChangeIcons);
         btnChangeIcons.click();
-        Thread.sleep(3000);
     }
 
     public void clickOnChangeMachine() throws InterruptedException {
+        scrollToElement(btnChangeMachine);
         btnChangeMachine.click();
-        Thread.sleep(3000);
     }
 
     public void clickSpinBtn() throws InterruptedException {
         btnSpin.click();
-        Thread.sleep(5000);
     }
 
     public void clickBetSpinUp() {
@@ -110,6 +124,7 @@ public class MainPage {
     public void clickBetSpinDown() {
         btnBetSpinDown.click();
     }
+
 
     public int actualBetValue() {
         return Integer.parseInt(betBox.getText());
@@ -123,12 +138,12 @@ public class MainPage {
         return driver.findElement(By.xpath("//div[@id='changeable_background_" + i + "']"));
     }
 
-    public WebElement iconElement(int i) {
-        return driver.findElement(By.xpath("//div[contains(@class, 'reelSet" + i + "')]"));
+    public By iconElement(int i) {
+        return By.xpath("//div[contains(@class, 'reelSet" + i + "')]");
     }
 
-    public WebElement machineElement(int i) {
-        return driver.findElement(By.xpath("//div[contains(@class, 'slotMachine" + i + "')]"));
+    public By machineElement(int i) {
+        return By.xpath("//div[contains(@class, 'slotMachine" + i + "')]");
     }
 
 }

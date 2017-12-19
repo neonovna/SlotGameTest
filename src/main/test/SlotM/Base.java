@@ -4,7 +4,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 public class Base {
 
@@ -12,8 +13,8 @@ public class Base {
 
     @Before
     public void setUp() throws Exception {
-        System.out.print("\nBrowser open");
-        driver = new ChromeDriver();
+        System.out.println("\nBrowser open");
+        driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.navigate().to("http://slotmachinescript.com/");
         Assert.assertEquals("Incorrect title", "Add a HTML5 Slot Machine to your Site", driver.getTitle());
@@ -21,8 +22,7 @@ public class Base {
 
     @After
     public void tearDown() throws Exception {
-        System.out.print("\nBrowser close");
-        driver.close();
+        System.out.println("\nBrowser close");
         driver.quit();
     }
 
